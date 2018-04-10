@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'com.palantir.docker' version '0.19.2'
     id 'org.springframework.boot' version '2.0.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.4.RELEASE'
 }
 
 group = 'me.beary'
@@ -13,12 +14,12 @@ repositories {
 }
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web:2.0.0.RELEASE'
-    compile 'org.springframework.boot:spring-boot-devtools:2.0.0.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-devtools' // bootRun 时 gradle classes 即可自动重启
     compile 'io.springfox:springfox-swagger2:2.8.0'
     compile 'io.springfox:springfox-swagger-ui:2.8.0'
     compile 'javax.xml.bind:jaxb-api:2.3.0'
-    testCompile 'org.springframework.boot:spring-boot-starter-test:2.0.0.RELEASE'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
 ext {
@@ -29,5 +30,5 @@ ext {
 docker {
     name = "$dockerRegistry/$dockerNamespace/$rootProject.name:$version"
     copySpec.from(bootJar.archivePath)
-            .rename(bootJar.archiveName, 'app.jar')
+            .rename(bootJar.archiveName, 'app.jar') // docker 打包时将 jar 包改名为 app.jar ，方便 Dockerfile 中的 CMD 编写
 }
