@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id "com.palantir.docker" version "0.19.2"
+    id 'org.springframework.boot' version '2.0.0.RELEASE'
+}
+
+group = 'me.beary'
+version = '0.0.1'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web:2.0.0.RELEASE'
+    compile 'org.springframework.boot:spring-boot-devtools:2.0.0.RELEASE'
+    compile "io.springfox:springfox-swagger2:2.8.0"
+    compile 'io.springfox:springfox-swagger-ui:2.8.0'
+    compile 'javax.xml.bind:jaxb-api:2.3.0'
+    testCompile 'org.springframework.boot:spring-boot-starter-test:2.0.0.RELEASE'
+}
+
+ext {
+    dockerRegistry = ''
+    dockerNamespace = 'beary'
+}
+
+docker {
+    name = "$dockerRegistry/$dockerNamespace/$rootProject.name:$version"
+    copySpec.from(bootJar.archivePath)
+            .rename(bootJar.archiveName, 'app.jar')
+}
