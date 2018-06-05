@@ -1,0 +1,43 @@
+extends:
+  - tslint:latest
+  - tslint-react
+rulesDirectory:
+  - src
+rules:
+  quotemark:
+    - true
+    - single
+    - jsx-double
+  whitespace:
+    - true
+    - check-module
+    - check-operator
+    - check-branch
+  no-console:
+    - false
+  semicolon:
+    - true
+    - never
+  ordered-imports:
+    - false
+  member-access:
+    - false
+  arrow-parens:
+    - true
+    - ban-single-arg-parens
+  no-unused-expression: true
+  no-unused-variable: true
+  jsx-boolean-value: false
+  no-submodule-imports: false
+  trailing-comma: false
+  interface-name: false
+  jsx-no-multiline-js: false
+  object-literal-sort-keys: false
+  no-string-literal: false
+  no-object-literal-type-assertion: false
+  jsx-alignment: false
+  jsx-no-lambda: false
+  jsx-wrap-multiline: false
+  no-implicit-dependencies: false
+  max-classes-per-file: false
+  no-namespace: false

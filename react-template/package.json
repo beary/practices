@@ -1,0 +1,33 @@
+{
+  "name": "react-template",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "js-yaml": "^3.12.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-router-dom": "^4.2.2"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^3.11.1",
+    "@types/node": "^10.3.1",
+    "@types/react": "^16.3.16",
+    "@types/react-dom": "^16.0.6",
+    "@types/react-router-dom": "^4.2.7",
+    "less": "^3.0.4",
+    "raw-loader": "^0.5.1",
+    "react-app-rewire-less": "^2.1.1",
+    "react-app-rewire-typescript": "^2.0.2",
+    "react-app-rewired": "^1.5.2",
+    "react-scripts": "^1.1.4",
+    "tslint": "^5.10.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^2.9.1"
+  }
+}
