@@ -1,17 +1,34 @@
 import * as React from 'react'
+import { LanguageProvider, withLanguage, WithLanguage } from './lang'
 import './App.less'
+
+interface Ps {
+  name: string
+}
+
+class SomeView extends React.Component<WithLanguage> {
+  render() {
+    return (
+      <div>
+        <div>{this.props.lang.pack.name}</div>
+        <div>[{this.props.children}]</div>
+      </div>
+    )
+  }
+}
+
+const LangView = withLanguage(SomeView)
 
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
+      <LanguageProvider>
+        <div className="App">
+          <LangView>
+            ff
+          </LangView>
+        </div>
+      </LanguageProvider>
     )
   }
 }
