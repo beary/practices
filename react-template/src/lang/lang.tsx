@@ -61,14 +61,15 @@ export class LanguageProvider extends React.Component<{}, LanguageProviderStates
 }
 
 export interface WithLanguage {
-  lang: LanguageProviderStates
+  lang?: LanguageProviderStates
 }
 
-export function withLanguage<P>(C: React.ComponentType<P & { children?: React.ReactNode } & WithLanguage>) {
+export function withLanguage<P>(C: React.ComponentType<P & WithLanguage>) {
   return (props: P) => {
+    const { lang, ...withoutLanguage } = props as any
     return (
       <languageContext.Consumer>
-        {states => <C {...props} lang={states} />}
+        {states => <C {...withoutLanguage} lang={states} />}
       </languageContext.Consumer>
     )
   }

@@ -2,20 +2,32 @@ import * as React from 'react'
 import { LanguageProvider, withLanguage, WithLanguage } from './lang'
 import './App.less'
 
-interface Ps {
-  name: string
-}
+const SomeView = (props: { name: string, children: React.ReactNode } & WithLanguage) =>
+  <div>
+    <div>{props.lang.pack.name}</div>
+    <div>[{props.children}]</div>
+  </div>
 
-class SomeView extends React.Component<WithLanguage> {
+class UpdateLang extends React.Component<{} & WithLanguage> {
   render() {
     return (
-      <div>
-        <div>{this.props.lang.pack.name}</div>
-        <div>[{this.props.children}]</div>
-      </div>
+      <select onChange={e => {
+        this.props.lang.set(e.target.value)
+      }}>
+        {this.props.lang.all.map(p => (
+          <option
+            key={p.language}
+            value={p.language}
+          >
+            {p.name}
+          </option>
+        ))}
+      </select>
     )
   }
 }
+
+const UpdateLangView = withLanguage(UpdateLang)
 
 const LangView = withLanguage(SomeView)
 
@@ -24,9 +36,10 @@ class App extends React.Component {
     return (
       <LanguageProvider>
         <div className="App">
-          <LangView>
+          <LangView name="xx">
             ff
           </LangView>
+          <UpdateLangView />
         </div>
       </LanguageProvider>
     )
